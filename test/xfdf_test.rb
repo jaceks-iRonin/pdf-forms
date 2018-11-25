@@ -21,4 +21,10 @@ class XfdfTest < Minitest::Test
     assert fdf_text = fdf.to_fdf
     assert_match %r{<field name=\"field1\"><value>one two</value></field>}, fdf_text
   end
+
+  def test_file_path
+    fdf = PdfForms::XFdf.new({ field1: 'fieldvalue1', other_field: 'some other value' }, { file: '/test_path/test_file.xfdf' })
+    assert fdf_text = fdf.to_fdf
+    assert_match %r{<f href=\"/test_path/test_file.xfdf\" />}, fdf_text
+  end
 end
