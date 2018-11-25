@@ -31,7 +31,10 @@ module PdfForms
     end
 
     def footer
-      "</fields></xfdf>"
+      footer = ''
+      footer << "<f href=\"#{options[:file]}\" />" if options[:file]
+      footer << '</fields></xfdf>'
+      footer
     end
   end
 end
